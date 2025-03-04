@@ -31,7 +31,7 @@ db.connect((err) => {
 });
 
 app.get("/products", (req, res) => {
-  const query = "SELECT * FROM product";
+  const query = "SELECT * FROM products";
   db.query(query, (err, results) => {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -42,7 +42,7 @@ app.get("/products", (req, res) => {
 });
 
 app.get("/products/:id", (req, res) => {
-  const query = "SELECT * FROM product WHERE id = ?";
+  const query = "SELECT * FROM products WHERE id = ?";
   db.query(query, [req.params.id], (err, results) => {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -58,7 +58,7 @@ app.get("/products/:id", (req, res) => {
 
 app.post("/products", (req, res) => {
   const { name, category, subcategory, price, imageURL, description, stock } = req.body;
-  const query = "INSERT INTO product (name, category, subcategory, price, imageURL, description, stock) VALUES (?, ?, ?, ?, ?, ?, ?)";
+  const query = "INSERT INTO products (name, category, subcategory, price, imageURL, description, stock) VALUES (?, ?, ?, ?, ?, ?, ?)";
   db.query(query, [name, category, subcategory, price, imageURL, description, stock], (err, results) => {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -70,7 +70,7 @@ app.post("/products", (req, res) => {
 
 app.put("/products/:id", (req, res) => {
   const { name, category, subcategory, price, imageURL, description, stock } = req.body;
-  const query = "UPDATE product SET name = ?, category = ?, subcategory = ?, price = ?, imageURL = ?, description = ?, stock = ? WHERE id = ?";
+  const query = "UPDATE products SET name = ?, category = ?, subcategory = ?, price = ?, imageURL = ?, description = ?, stock = ? WHERE id = ?";
   db.query(query, [name, category, subcategory, price, imageURL, description, stock, req.params.id], (err, results) => {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -85,7 +85,7 @@ app.put("/products/:id", (req, res) => {
 });
 
 app.delete("/products/:id", (req, res) => {
-  const query = "DELETE FROM product WHERE id = ?";
+  const query = "DELETE FROM products WHERE id = ?";
   db.query(query, [req.params.id], (err, results) => {
     if (err) {
       res.status(500).json({ error: err.message });
