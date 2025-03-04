@@ -1,0 +1,8 @@
+{
+	"command": "node app.js",
+	"build_path": "C:\\Users\\VL\\Desktop\\shoba-backend",
+	"stack": "node18",
+	"env_variables": {},
+	"memory": 256,
+	"scripts": {}
+}
