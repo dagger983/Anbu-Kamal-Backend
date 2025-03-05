@@ -100,7 +100,16 @@ app.delete("/products/:id", (req, res) => {
 });
 
 
-// Listen on Catalyst environment port or local port
+app.get("/offers", (req, res) => {
+  const sql = "SELECT * FROM offers";
+  db.query(sql, (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(result);
+  });
+})
+
 const listenPort = process.env.X_ZOHO_CATALYST_LISTEN_PORT || port;
 
 app.listen(listenPort, () => {
